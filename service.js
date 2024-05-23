@@ -79,7 +79,6 @@ async function fetchdata(tokens){
       
   }
   console.log(map) ;
-  map.set("DIV 2 " , 7260)
   for(const [key , value ] of map.entries() ){
      if( value < 86400 ){
       var hours = new Date().getHours() ;
