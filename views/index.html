@@ -141,12 +141,9 @@
     if (Notification.permission === 'denied') {
       alert('Notification permission is denied. Click on "i" side to home symbol at top and reset permissions.');
     }
-    Notification.requestPermission()
-  .then((permission) => {
+    Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
       console.log('Notification permission granted.');
-
-      // Get the FCM token with VAPID key
       return getToken(messaging, {
         vapidKey: 'BFmx8k0QRfmZvyN9jo23jfHH57117dy_MD90RG4U1hIJTthp7tGJo8Ziig9Z_DxnvTTJzepYOj4SDOJObP8T9Ic' 
       });
