@@ -15,7 +15,7 @@ if (!admin.apps.length) {
 const db = admin.database();
 const messaging = admin.messaging();
 
-cron.schedule('* * * * *', () => {
+cron.schedule('0 1 * * *', () => {
   sendNotification();
 }, {
   timezone: "Asia/Kolkata"  
