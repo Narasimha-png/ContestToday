@@ -131,7 +131,6 @@
     const app = initializeApp(firebaseConfig);
     const messaging = getMessaging(app);
 
-    // Request permission and subscribe to topic
     Notification.requestPermission()
   .then((permission) => {
     if (permission === 'granted') {
@@ -149,7 +148,7 @@
     console.log('FCM Token:', token);
 
     // Send the token to your server
-    return fetch('http://localhost:7000/store-fcm-token', {
+    return fetch('/store-fcm-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -169,9 +168,6 @@
   });
 
 
-      
-
-  // Service Worker Registration
  
   if (Notification.permission == 'granted') {
     document.getElementById("notgranted").style.display = "none";
@@ -189,12 +185,6 @@
       }
     });
   });
-
-
-// Call initializeFirebase function when the DOM content is loaded
-document.addEventListener("DOMContentLoaded", function () {
-  initializeFirebase();
-});
 
 
   </script>
