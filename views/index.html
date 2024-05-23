@@ -50,7 +50,7 @@
     </div>
     <p class="heading">}</p>
   </header>
-  <header class="success" id="granted" data-bs-theme="dark">
+  <header class="success main" id="granted" data-bs-theme="dark">
     <p class="heading">Thanks for Subscribing ; </p>
     <p class="heading" style="text-align: center;"> We will Notify the Contest timings @ 1:00 AM everyday </p>
   </header>
@@ -130,7 +130,17 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const messaging = getMessaging(app);
+  // Service Worker Registration
+ 
+  if (Notification.permission == 'granted') {
+    document.getElementById("notgranted").style.display = "none";
+    document.getElementById("granted").style.display = "flex";
+  }
 
+  document.getElementById("notify").addEventListener("click", function () {
+    if (Notification.permission === 'denied') {
+      alert('Notification permission is denied. Click on "i" side to home symbol at top and reset permissions.');
+    }
     Notification.requestPermission()
   .then((permission) => {
     if (permission === 'granted') {
@@ -168,23 +178,10 @@
   });
 
 
- 
-  if (Notification.permission == 'granted') {
-    document.getElementById("notgranted").style.display = "none";
-    document.getElementById("granted").style.display = "flex";
-  }
-
-  document.getElementById("notify").addEventListener("click", function () {
-    if (Notification.permission === 'denied') {
-      alert('Notification permission is denied. Click on "i" side to home symbol at top and reset permissions.');
-    }
-    Notification.requestPermission().then(() => {
-      if (Notification.permission == 'granted') {
-        document.getElementById("notgranted").style.display = "none";
-        document.getElementById("granted").style.display = "flex";
-      }
-    });
+      
   });
+
+
 
 
   </script>
