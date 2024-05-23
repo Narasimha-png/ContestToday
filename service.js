@@ -30,7 +30,9 @@ function sendNotification() {
         const token = childSnapshot.val().token;
         tokens.push(token);
       });
+        if( tokens.length > 0 ){
       contestNotifier(tokens) ;
+        }
     });
       // Prepare message to send to all tokens
      
