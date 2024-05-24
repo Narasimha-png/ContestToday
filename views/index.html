@@ -141,6 +141,7 @@
     if (Notification.permission === 'denied') {
       alert('Notification permission is denied. Click on "i" side to home symbol at top and reset permissions.');
     }
+   else{
     Notification.requestPermission().then((permission) => {
     if (permission === 'granted') {
       console.log('Notification permission granted.');
@@ -173,8 +174,8 @@
   .catch((err) => {
     console.error('Unable to get permission to notify.', err);
   });
-
-
+location.reload();
+   }
       
   });
 
