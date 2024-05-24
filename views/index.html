@@ -167,6 +167,7 @@
   .then((response) => {
     if (response.ok) {
       console.log('FCM Token sent to server successfully');
+      location.reload();
     } else {
       throw new Error('Failed to send FCM token to server');
     }
@@ -174,7 +175,7 @@
   .catch((err) => {
     console.error('Unable to get permission to notify.', err);
   });
-location.reload();
+
    }
       
   });
