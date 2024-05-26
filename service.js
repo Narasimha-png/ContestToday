@@ -90,11 +90,20 @@ async function fetchdata(tokens) {
     console.log(map);
 
     for (const [key, value] of map.entries()) {
-      if (value < 86400) { // 86400 seconds = 24 hours
-        const hours = new Date().getHours();
-        const nhours = Math.floor(value / (60 * 60));
-        const min = Math.floor((value % (60 * 60)) / 60);
-        await sendDailyNotification(key, `Starts at ${hours + nhours}:${min}`, tokens);
+    if (value < 86400) { // 86400 seconds = 24 hours
+        const currentTime = new Date();
+        const contestTimeUTC = new Date(currentTime.getTime() + value * 1000);
+        const contestTimeIST = new Date(contestTimeUTC.getTime() + (5.5 * 60 * 60 * 1000));
+
+        let hours = contestTimeIST.getHours();
+        const minutes = contestTimeIST.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        const minutesStr = minutes < 10 ? '0' + minutes : minutes;
+
+        await sendDailyNotification(key, `Starts at ${hours}:${minutesStr} ${ampm}`, tokens);
       }
     }
   } catch (error) {
