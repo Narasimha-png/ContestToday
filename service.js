@@ -16,7 +16,7 @@ if (!admin.apps.length) {
 const db = admin.database();
 const messaging = admin.messaging();
 
-cron.schedule('*/5 * * * *', () => {
+cron.schedule('10 1 * * *', () => {
   console.log("Cron job started at 01:10 AM Asia/Kolkata timezone");
   sendNotification();
 }, {
