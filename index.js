@@ -32,6 +32,18 @@ app.post('/store-fcm-token', (req, res) => {
         if (snapshot.exists()) {
             console.log('FCM token already exists');
             res.status(200).send('FCM Token already exists');
+            const message = {
+                notification: {
+                  title: "ContestToday" ,
+                  body: "Thanks for Subscribing"
+                },
+                token: token 
+              };
+            messaging.send(message).then(()=>{
+                console.log("Send Successfully");
+            }).catch(()=>{
+                console.log("Error in sending notificaion") ;
+            }) ;
         } else {
             fcmTokensRef.push({ token: token })
                 .then(() => {
@@ -44,7 +56,11 @@ app.post('/store-fcm-token', (req, res) => {
                         },
                         token: token 
                       };
-                    messaging.send(message)
+                    messaging.send(message).then(()=>{
+                        console.log("Send Successfully");
+                    }).catch(()=>{
+                        console.log("Error in sending notificaion") ;
+                    }) 
                 })
                 .catch(error => {
                     console.error('Error storing FCM token:', error);
